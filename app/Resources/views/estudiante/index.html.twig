@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+{% for success in app.session.flashBag.get('success') %}
+    <div class="alert alert-success text-center">
+        {{ success }}
+    </div>
+{% endfor %}
+{% for error in app.session.flashBag.get('error') %}
+    <div class="alert alert-danger text-center">
+        {{ error }}
+    </div>
+{% endfor %}
+    <div class="container">
+        <a href="{{ path('insert_estudiante') }}" class="btn btn-primary mt-2 mb-2">Agregar Estudiante</a>
+        <table class="table">
+            <thead class="thead-dark">
+                <tr class="text-center">
+                    <th scope="col">Id</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Apellidos</th>
+                    <th scope="col">Edad</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Telefono</th>
+                    <th scope="col">Grupo</th>
+                    <th scope="col">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for estudiante in estudiantes %}
+                <tr class="text-center">    
+                    <th scope="row">{{ estudiante.id }}</th>
+                    <td>{{ estudiante.nombre }}</td>
+                    <td>{{ estudiante.apellidos }}</td>
+                    <td>{{ estudiante.edad }}</td>
+                    <td>{{ estudiante.email }}</td>
+                    <td>{{ estudiante.telefono }}</td>
+                    <td>{{ estudiante.grupo.grupo }}</td>
+                    <td class="d-flex justify-content-center">
+                        <form method="POST" action="{{ path('update_estudiante', {'id':estudiante.id}) }}">
+                            <button type="submit" class="btn accion">&#128221;</button>
+                        </form>
+                        <form method="POST" action="{{ path('remove_estudiante', {'id':estudiante.id}) }}">
+                            <button type="submit" class="btn accion">&#128465;</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

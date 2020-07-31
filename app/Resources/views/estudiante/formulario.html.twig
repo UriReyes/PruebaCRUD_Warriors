@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+{% block body %}
+    <div class="container">
+        {% if edit is defined %}
+            <h2 class="text-monospace mb-2 mt-2">Editar Estudiante:{{nombre}}</h2>
+        {% else %}
+            <h2 class="text-monospace mb-2 mt-2">Añadir Estudiante</h2>
+        {% endif %}
+        {{form_start(form)}}
+        <div class="row">
+            <div class="col-sm">
+                <div class="form-group">
+                    {{form_label(form.nombre)}}
+                    {{form_widget(form.nombre)}}
+                </div>
+            </div>
+            <div class="col-sm">
+                <div class="form-group">
+                    {{form_label(form.apellidos)}}
+                    {{form_widget(form.apellidos)}}
+                </div>
+            </div>
+            <div class="col-sm">
+                <div class="form-group">
+                    {{form_label(form.edad)}}
+                    {{form_widget(form.edad)}}
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm">
+                <div class="form-group">
+                    {{form_label(form.email)}}
+                    {{form_widget(form.email)}}
+                </div>
+            </div>
+            <div class="col-sm">
+                <div class="form-group">
+                    {{form_label(form.telefono)}}
+                    {{form_widget(form.telefono)}}
+                </div>
+            </div>
+        </div>
+        <br/>
+        {{form_end(form)}}
+    </div>
+{% endblock %}
+

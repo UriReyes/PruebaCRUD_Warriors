@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+{% for success in app.session.flashBag.get('success') %}
+    <div class="alert alert-success text-center">
+        {{ success }}
+    </div>
+{% endfor %}
+{% for error in app.session.flashBag.get('error') %}
+    <div class="alert alert-danger text-center">
+        {{ error }}
+    </div>
+{% endfor %}
+    <div class="container">
+        <a href="{{ path('insert_grupo') }}" class="btn btn-primary mt-2 mb-2">Agregar Grupo</a>
+        <table class="table">
+            <thead class="thead-dark">
+                <tr class="text-center">
+                    <th scope="col">ID</th>
+                    <th scope="col">Semestre</th>
+                    <th scope="col">Grupo</th>
+                    <th scope="col">Turno</th>
+                    <th scope="col">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for grupo in grupos %}
+                <tr class="text-center">    
+                    <th scope="row">{{ grupo.id }}</th>
+                    <td>{{ grupo.semestre }}</td>
+                    <td>{{ grupo.grupo }}</td>
+                    <td>{{ grupo.turno }}</td>
+                    <td class="d-flex justify-content-center">
+                        <form method="POST" action="{{ path('update_grupo', {'id':grupo.id}) }}">
+                            <button type="submit" class="btn accion">&#128221;</button>
+                        </form>
+                        <form method="POST" action="{{ path('remove_grupo', {'id':grupo.id})}}">
+                            <button type="submit" class="btn accion">&#128465;</button>
+                        </form>
+                        {# <a href="{{ path('formulario_grupo', {'id':grupo.id}) }}" class="btn accion">&#128221;</a>
+                        <a href="{{ path('remove_grupo', {'id':grupo.id})}}" class="btn accion">&#128465;</a> #}
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
+

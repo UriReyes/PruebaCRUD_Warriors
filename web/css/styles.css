@@ -1,0 +1,23 @@
+html, body {
+    height: 100%;
+}
+
+tr{
+    text-transform: capitalize;
+}
+
+.accion{
+    font-size: 25px;
+}
+
+.c-main{
+    height: 80%;
+    display: flex;
+    align-items: center;
+}
+.c-secondary{
+    width: 100%;
+}
+.allheight{
+    height: 85%;
+}

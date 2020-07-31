@@ -1,0 +1,7 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="alert alert-warning text-center" role="alert">
+        {{error}} <a href="{{ path('get_grupo') }}" class="alert-link">Volver</a>
+    </div>
+{% endblock %}

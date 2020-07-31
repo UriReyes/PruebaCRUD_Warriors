@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+{% block body %}
+    <div class="container">
+        {% if edit is defined %}
+            <h2 class="text-monospace mb-2 mt-2">Editar Grupo:{{grupo}}</h2>
+        {% else %}
+            <h2 class="text-monospace mb-2 mt-2">Añadir Grupo</h2>
+        {% endif %}
+        {{form_start(form)}}
+        {{form_widget(form)}}
+        {{form_end(form)}}
+    </div>
+{% endblock %}
+
